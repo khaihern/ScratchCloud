@@ -1,3 +1,5 @@
+![scratchCloudBlock](https://user-images.githubusercontent.com/57642622/113649143-e8642680-965b-11eb-9924-f8bfd5a31464.png)
+
 # ScratchCloud
 
 Introducing the next-generation method to interact with Scratch Cloud Data!
