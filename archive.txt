@@ -1,0 +1,23 @@
+const Scratch = require('scratch-api');
+
+projectID = [510457939, 510458157];
+
+const startCloudServer = (id) => {
+  Scratch.UserSession.create(process.env.SCRATCH_USERNAME, process.env.SCRATCH_PASSWORD, (err, user) => {
+    user.cloudSession(id, (err, cloud) => {
+      cloud.on('set', (name, value) => {
+        console.log(name, value);
+        cloud.set(name, 568);
+      });
+    });
+  });
+}
+
+projectID.forEach(startCloudServer);
+
+
+=============
+  	<h1>Hi <%= username %></h1>
+    <form action="/logout?_method=DELETE" method="POST">
+      <button type="submit">Log Out</button>
+    </form>

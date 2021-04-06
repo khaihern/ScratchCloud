@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>Home Page</title>
+  	<link href="/css/app.css" rel="stylesheet" type="text/css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="container">
+      <nav>
+        <div class="dropdown">
+          <button onclick="myFunction()" class="dropbtn"><%= username %><img src="/images/downArrow.svg"></button>
+          <div id="myDropdown" class="dropdown-content">
+            <button>Account</button>
+            <form action="/logout?_method=DELETE" method="POST"><button type="submit">Log Out</button></form>
+          </div>
+        </div>
+        <h3><a href="#">Client</a></h3>
+        <h3><a href="#">Support</a></h3>
+        <h3><a href="#">About</a></h3>
+      </nav>
+      <div id="content">
+        <section id="sidebar">
+          <div class="sidebar-table"><h1>Projects</h1></div>
+          <div class="sidebar-table" id="sidebar-selected"><h2>BlueOS</h2></div>
+          <div class="sidebar-table"><h3>CloudCast - Live Radio</h3></div>
+          <div class="sidebar-table"><h3>Cloud Platformer</h3></div>
+          <div class="sidebar-table"><h3>Chess Online v0.71</h3></div>
+          <button>New Project</button>
+        </section>
+        <section id="workspace">
+          <h1>BlueOS</h1>
+          <div id="toolbox">
+            <h2 id="toolbox-selected">Overview</h2>
+            <h2>Packages</h2>
+            <h2>Docs</h2>
+          </div>
+          <hr>
+          <div id="worktable"></div>
+        </section>
+      </div>
+    </div>
+    <script>
+      /* When the user clicks on the button, 
+      toggle between hiding and showing the dropdown content */
+      function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+      }
+
+      // Close the dropdown if the user clicks outside of it
+      window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+          var dropdowns = document.getElementsByClassName("dropdown-content");
+          var i;
+          for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+              openDropdown.classList.remove('show');
+            }
+          }
+        }
+      }
+    </script>
+  </body>
+</html>	

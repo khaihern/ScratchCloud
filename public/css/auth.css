@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  outline: none;
+}
+
+h1 {
+  font-size: 28px;
+  color: rgb(19,170,82,1);
+  line-height: 40px;
+}
+
+h3 {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgb(33,49,60,1);
+}
+
+a {
+  color: #13AA52;
+  text-decoration: none;
+}
+
+#container {
+  background-color: #13AA52;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+#content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 500px;
+}
+
+form {
+  padding: 30px;
+  background-color: #FFFFFF;
+}
+
+form > * {
+  margin-bottom: 15px;
+}
+
+#error {
+  background-color: rgb(255,215,221,1);
+  padding: 5px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+#error > img {
+  margin-right: 5px;
+  width: 20px;
+}
+
+#error > h3 {
+  color: rgb(255,74,105,1);
+}
+
+label {
+  color: rgb(33,49,60,1);
+}
+
+#username, #password {
+  width: 100%;
+  height: 45px;
+  background: rgb(242,242,242,1);
+  border: none;
+  padding: 10px;
+  color: rgb(33,49,60,1);
+}
+
+#username:focus, #password:focus {
+  border-bottom: solid 2px rgb(19,170,82,1);
+}
+
+button {
+  background: none;
+  border: solid 1px rgb(19,170,82,1);
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+button > h3 {
+  color: rgb(19,170,82,1);
+}
+
+button > * {
+  margin: 0 5px;
+}
+
+
