@@ -1,0 +1,10 @@
+<h1><%= projectData.name %></h1>
+<div id="toolbox">
+  <h2 id="toolbox-overview"><a href="../overview/">Overview</a></h2>
+  <h2 id="toolbox-collections"><a href="../collections/">Collections</a></h2>
+  <h2 id="toolbox-packages"><a href="../packages/">Packages</a></h2>
+</div>
+<hr>
+<script>
+  document.getElementById(`toolbox-<%= title %>`).classList.add('toolbox-selected')
+</script>

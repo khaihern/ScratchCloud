@@ -21,3 +21,7 @@ projectID.forEach(startCloudServer);
     <form action="/logout?_method=DELETE" method="POST">
       <button type="submit">Log Out</button>
     </form>
+
+    <% for(i=0; i<projects.length; i++) {%>
+              <div class="sidebar-table"><h3><a href="/<%= projects[i].id %>"><%= projects[id].name %></a></h3></div>
+            <% } %>

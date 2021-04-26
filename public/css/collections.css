@@ -1,0 +1,53 @@
+#insert-data {
+  margin-bottom: 10px;
+  padding: 2px 5px;
+  border: 1px solid #B8C4C2;
+  background: linear-gradient(180deg, #F9FBFA 0%, #DDE4E2 100%);
+  cursor: pointer;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  font-size: 12px;
+  color: rgb(33,49,60,1);
+}
+
+th {
+  background-color: rgba(0,0,0,0.05);
+}
+
+.delete-container {
+  background-color: rgb(255,215,221);
+}
+
+.delete-toolbox {
+  text-align: right;
+  outline: 1px solid rgb(255,74,105);
+  outline-offset: -1px;
+}
+
+.delete-toolbox > button {
+  border: 1px solid rgb(255,74,105);
+  background-color: transparent;
+  padding: 2px 5px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.delete-toolbox > button > h2 {
+  font-size: 12px;
+  color: rgb(255,74,105);
+}
+
+.delete-document {
+  margin: auto 0 auto auto; 
+  float: right;
+}

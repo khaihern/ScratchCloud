@@ -8,59 +8,49 @@
   </head>
   <body>
     <div id="container">
+      <%- include('partials/popup') %>
       <nav>
         <div class="dropdown">
-          <button onclick="myFunction()" class="dropbtn"><%= username %><img src="/images/downArrow.svg"></button>
+          <button class="dropBtn"><%= username %><img src="/images/downArrow.svg"></button>
           <div id="myDropdown" class="dropdown-content">
             <button>Account</button>
-            <form action="/logout?_method=DELETE" method="POST"><button type="submit">Log Out</button></form>
+            <button id="logout" type="submit">Log Out</button>
           </div>
         </div>
         <h3><a href="#">Client</a></h3>
+        <h3><a href="#">Packages Docs</a></h3>
         <h3><a href="#">Support</a></h3>
         <h3><a href="#">About</a></h3>
       </nav>
       <div id="content">
         <section id="sidebar">
           <div class="sidebar-table"><h1>Projects</h1></div>
-          <div class="sidebar-table" id="sidebar-selected"><h2>BlueOS</h2></div>
-          <div class="sidebar-table"><h3>CloudCast - Live Radio</h3></div>
-          <div class="sidebar-table"><h3>Cloud Platformer</h3></div>
-          <div class="sidebar-table"><h3>Chess Online v0.71</h3></div>
-          <button>New Project</button>
+          <div id="project-list">
+            <% for(i=0; i<projects.length; i++) {%>
+              <div class="sidebar-table" id="sidebar-<%= projects[i].id %>"><h3><a href="/app/<%= projects[i].id %>/overview/"><%= projects[i].name %></a></h3></div>
+            <% } %>
+            <!--
+            <div class="sidebar-table" id="sidebar-selected"><h2>BlueOS</h2></div>
+            <div class="sidebar-table"><h3>CloudCast - Live Radio</h3></div>
+            <div class="sidebar-table"><h3>Cloud Platformer</h3></div>
+            <div class="sidebar-table"><h3>Chess Online v0.71</h3></div>
+            -->
+          </div>
+          <a href="/app/newProject" class="button">New Project</a>
         </section>
         <section id="workspace">
-          <h1>BlueOS</h1>
-          <div id="toolbox">
-            <h2 id="toolbox-selected">Overview</h2>
-            <h2>Packages</h2>
-            <h2>Docs</h2>
-          </div>
-          <hr>
-          <div id="worktable"></div>
+          <% if (title === 'newProject' || title === 'welcome') { %>
+            <%- include(`partials/${title}`) %>
+          <% } else { %>
+            <%- include('partials/tabs/toolbox') %>
+            <%- include(`partials/tabs/${title}`) %>
+            <script>
+              document.getElementById('sidebar-<%= projectData.id %>').classList.add('sidebar-selected')
+            </script>
+          <% } %>
         </section>
       </div>
     </div>
-    <script>
-      /* When the user clicks on the button, 
-      toggle between hiding and showing the dropdown content */
-      function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
-      }
-
-      // Close the dropdown if the user clicks outside of it
-      window.onclick = function(event) {
-        if (!event.target.matches('.dropbtn')) {
-          var dropdowns = document.getElementsByClassName("dropdown-content");
-          var i;
-          for (i = 0; i < dropdowns.length; i++) {
-            var openDropdown = dropdowns[i];
-            if (openDropdown.classList.contains('show')) {
-              openDropdown.classList.remove('show');
-            }
-          }
-        }
-      }
-    </script>
+    <script src="/dist/index.js"></script>
   </body>
 </html>	

@@ -1,0 +1,46 @@
+<link href="/css/collections.css" rel="stylesheet" type="text/css">
+<div id="worktable">
+  <button id="insert-data">Insert Data</button>
+  <table>
+    <tr>
+      <th><h2>Fields</h2></th>
+      <th><h2>Values</h2></th>
+    </tr>
+
+    <% for(i=0; i<projectData.collections.length; i++) {%>
+      <tr class="document-<%= projectData.collections[i].key %>">
+        <td><h3><%= projectData.collections[i].key %></h3></td>
+        <td>
+          <h3><%= projectData.collections[i].value %><img class="delete-document" src="/images/delete.svg"></h3>
+        </td>
+      </tr>
+    <% } %>
+
+    <!--
+    <tr>
+      <td><h3>Storage 1</h3></td>
+      <td>
+        <h3>qie8yw73q4y2ehsiw<img class="delete-field" src="/images/delete.svg"></h3>
+      </td>
+    </tr>
+    <tr class="delete-container">
+      <td><h3>Storage 2</h3></td>
+      <td>
+        <h3>h4gnab3q4qhy9pq3q<img class="delete-field" src="/images/delete.svg"></h3>
+      </td>
+    </tr>
+    <tr class="delete-container">
+      <td class="delete-toolbox" colspan="2">
+        <button><h2>Cancel</h2></button>
+        <button><h2>Delete</h2></button>
+      </td>
+    </tr>
+    <tr>
+      <td><h3>Storage 3</h3></td>
+      <td>
+        <h3>h4gnab3q4qhy9pq3q<img class="delete-field" src="/images/delete.svg"></h3>
+      </td>
+    </tr>
+    -->
+  </table>
+</div>

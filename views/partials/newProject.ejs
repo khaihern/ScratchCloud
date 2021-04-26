@@ -1,0 +1,43 @@
+<link href="/css/newProject.css" rel="stylesheet" type="text/css">
+<form id="createProjectForm" action="/api/v1/projects/" method="POST">
+
+  <h1>Connect to a Scratch Project</h1>
+  <hr>
+  <!-- One "tab" for each step in the form: -->
+  <div class="tab"><h2>Setup Your Client:</h2>
+    <ol>
+      <li><h3>Go to this project: <a href="https://scratch.mit.edu/projects/000000000" target="_blank">https://scratch.mit.edu/projects/000000000</a></h3></li>
+      <li><h3>Follow the instructions in our documentation</h3></li>
+      <li><h3>Backpack the scripts into your project</h3></li>
+    </ol>
+    <br>
+    <h3>If you are having trouble setting up your client, please contact <a href="https://scratch.mit.edu/users/HyperTurbo2005" target="_blank">@HyperTurbo2005</a> on our profile page</h3>
+  </div>
+
+  <div class="tab"><h2>Enter Project ID:</h2>
+    <h3>The Project ID is the series of numbers behind your Scratch project URL</h3>
+    <input name="projectID" placeholder="Ex. 510457939" oninput="this.className = ''">
+  </div>
+
+  <div class="tab"><h2>Enter Project Name:</h2>
+    <h3>Give a name for your Scratch Project</h3>
+    <input name="projectName" placeholder="Project Name" oninput="this.className = ''">
+    <img id="project-thumbnail" src="">
+  </div>
+
+  <div style="overflow:auto;">
+    <div>
+      <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+      <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+    </div>
+  </div>
+
+  <!-- Circles which indicates the steps of the form: -->
+  <div style="text-align:center;margin-top:40px;">
+    <span class="step"></span>
+    <span class="step"></span>
+    <span class="step"></span>
+  </div>
+
+</form>
+<script src="/js/createProject.js"></script>

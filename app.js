@@ -1,5 +1,6 @@
 const express = require('express');
-const bcrypt = require('bcrypt');
+const morgan = require('morgan');
+const path = require('path');
 const passport = require('passport');
 const flash = require('express-flash');
 const session = require('express-session');
@@ -7,33 +8,24 @@ const methodOverride = require('method-override')
 
 const app = express();
 
-const User = require('./models/userModel');
-const initializePassport = require('./passport-config');
+const projectRouter = require('./routes/projectRoutes');
+const userRouter = require('./routes/userRoutes');
+const viewRouter = require('./routes/viewRoutes');
 
-initializePassport(
-  passport,
-  
-  username => User.findOne({ username: username }, (err, data) => {
-    if (err) {
-      console.log(err);
-    } else {
-      return data;
-    }
-  }),
+// CONFIGURATE PASSPORT
+const initializePassport = require('./utils/passport-config');
 
-  id => User.findOne({ _id: id }, (err, data) => {
-    if (err) {
-      console.log(err);
-    } else {
-      return data;
-    }
-  }) 
-)
+// Development logging
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
 
-
+// 2) MIDDLEWARES
 app.set('view-engine', 'ejs');
 app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
 app.use(flash());
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -45,59 +37,13 @@ app.use(passport.session());
 app.use(methodOverride('_method'));
 
 
-app.get('/app', checkAuthenticated, (req, res) => {
-  res.render('app.ejs', { username: req.user.username });
+// 3) ROUTES
+app.get('/create', (req, res) => {
+  res.status(200).render('partials/createProject.ejs');
 })
 
-app.get('/register', checkNotAuthenticated, (req, res) => {
-  res.render('register.ejs');
-})
-
-app.post('/register', async (req, res) => {
-  try {
-    const user = new User({
-      username: req.body.username,
-      password: req.body.password,
-    });
-    const hashedPassword = await bcrypt.hash(user.password, 10);
-    user.password = hashedPassword;
-    await user.save();
-    console.log('New User Created');
-    res.redirect('/login');
-  } catch (err) {
-    console.log(err);
-    res.redirect('/register');
-  }
-})
-
-app.get('/login', checkNotAuthenticated, (req, res) => {
-  res.render('login.ejs');
-})
-
-app.post('/login', passport.authenticate('local', {
-  successRedirect: '/app',
-  failureRedirect: '/login',
-  failureFlash: true
-  }
-))
-
-app.delete('/logout', (req, res) => {
-  req.logOut();
-  res.redirect('/login');
-})
-
-function checkAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/login');
-}
-
-function checkNotAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
-    return res.redirect('/app');
-  }
-  next();
-}
+app.use('/', viewRouter);
+app.use('/api/v1/users', userRouter);
+app.use('/api/v1/projects', projectRouter);
 
 module.exports = app;
