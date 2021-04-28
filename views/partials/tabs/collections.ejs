@@ -8,10 +8,16 @@
     </tr>
 
     <% for(i=0; i<projectData.collections.length; i++) {%>
-      <tr class="document-<%= projectData.collections[i].key %>">
+      <tr class="document <%= projectData.collections[i].key %>">
         <td><h3><%= projectData.collections[i].key %></h3></td>
         <td>
-          <h3><%= projectData.collections[i].value %><img class="delete-document" src="/images/delete.svg"></h3>
+          <h3 class="document-value <%= projectData.collections[i].key %>"><%= projectData.collections[i].value %><img class="delete-document <%= projectData.collections[i].key %>" src="/images/delete.svg"></h3>
+        </td>
+      </tr>
+      <tr class="delete-container delete-flag <%= projectData.collections[i].key %>">
+        <td class="delete-toolbox" colspan="2">
+          <button class="delete-cancel <%= projectData.collections[i].key %>">Cancel</button>
+          <button class="delete-confirm <%= projectData.collections[i].key %>">Delete</button>
         </td>
       </tr>
     <% } %>

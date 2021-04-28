@@ -69,3 +69,19 @@ exports.createDocument = async (req, res) => {
       });
   }
 }
+
+exports.deleteDocument = async (req, res) => {
+  try {
+    console.log('deleting document...');
+    const projectData = await Project.findOne({ id: req.params.id });
+    await projectData.save();
+    res.status(200).json({ status: 'success' });
+  } catch (err) {
+    res
+      .status(404)
+      .json({
+        status: 'fail',
+        message: err
+      });
+  }
+}

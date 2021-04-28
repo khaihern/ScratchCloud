@@ -11,6 +11,7 @@ router.get('/app/newproject', authController.checkAuthenticated, viewsController
 
 router.get('/app/:id/:tab', authController.checkAuthenticated, viewsController.getProject);
 router.post('/app/:id/collections', authController.checkAuthenticated, projectController.createDocument);
+router.delete('/app/:id/collections', projectController.deleteDocument)
 
 router.get('/register', authController.checkNotAuthenticated, viewsController.getRegistration);
 router.get('/login', authController.checkNotAuthenticated, viewsController.getLogin);

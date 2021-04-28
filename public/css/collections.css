@@ -40,14 +40,16 @@ th {
   padding: 2px 5px;
   margin-left: 5px;
   cursor: pointer;
-}
-
-.delete-toolbox > button > h2 {
   font-size: 12px;
+  font-weight: 600;
   color: rgb(255,74,105);
 }
 
 .delete-document {
   margin: auto 0 auto auto; 
   float: right;
+}
+
+.delete-flag {
+  display: none;
 }

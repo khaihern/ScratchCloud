@@ -191,17 +191,19 @@ nav > * {
   display: flex;
   justify-content: left;
   align-items: center;
-  margin-bottom: 10px;
 }
 
 #toolbox > h2 {
   font-size: 16px;
   color: rgb(186,189,190,1);
-  margin: 5px 25px 5px 0;
+  margin: 5px 25px 0 0;
+  padding-bottom: 5px;
 }
 
 #toolbox > .toolbox-selected {
+  padding-bottom: 2px;
   color: rgb(19,170,82,1);
+  border-bottom: 3px solid rgb(19,170,82,1);
 }
 
 #workspace > hr {
