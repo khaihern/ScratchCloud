@@ -72,10 +72,17 @@ exports.createDocument = async (req, res) => {
 
 exports.deleteDocument = async (req, res) => {
   try {
-    console.log('deleting document...');
     const projectData = await Project.findOne({ id: req.params.id });
+    projectData.collections = projectData.collections.filter((obj) => {
+      return obj.key !== req.body.key;
+    });
     await projectData.save();
-    res.status(200).json({ status: 'success' });
+    res
+      .status(200)
+      .json({ 
+        status: 'success',
+        message: 'Document successfully deleted' 
+      });
   } catch (err) {
     res
       .status(404)

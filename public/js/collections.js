@@ -48,7 +48,10 @@ export const deleteConfirm = async () => {
   try {
     const res = await axios({
       method: 'POST',
-      url: './?_method=DELETE'
+      url: './?_method=DELETE',
+      data: {
+        key: event.target.classList[1]
+      }
     });
     if ((res.data.status = 'success')) location.reload(true);
   } catch (err) {
