@@ -8,6 +8,7 @@ const methodOverride = require('method-override')
 
 const app = express();
 
+const scratchController = require('./controllers/scratchController');
 const projectRouter = require('./routes/projectRoutes');
 const userRouter = require('./routes/userRoutes');
 const viewRouter = require('./routes/viewRoutes');
@@ -45,5 +46,9 @@ app.get('/create', (req, res) => {
 app.use('/', viewRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/projects', projectRouter);
+
+
+// 4) SCRATCH CONNECTION
+scratchController.startCloudSessions();
 
 module.exports = app;
